@@ -28,10 +28,10 @@ void Model::init()
 	glBufferData(GL_ARRAY_BUFFER, size, &m_verts[0], GL_STATIC_DRAW);
 
 	glBindVertexArray(m_vao[0]);
-
 	glVertexAttribPointer(positionAttributeIndex, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-	glEnableVertexAttribArray(positionAttributeIndex);
+	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	ready = true;
 }
@@ -43,5 +43,11 @@ void Model::draw()
 		return;
 	}
 
+	glBindVertexArray(m_vao[0]);
+	glEnableVertexAttribArray(positionAttributeIndex);
+
 	glDrawArrays(GL_TRIANGLES, 0, m_verts.size() / 3);
+
+	glDisableVertexAttribArray(positionAttributeIndex);
+	glBindVertexArray(0);
 }
