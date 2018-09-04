@@ -1,8 +1,9 @@
 #include "Model.hpp"
+#include <iostream>
 
 Model::Model()
 {
-
+	ready = false;
 }
 
 Model::~Model()
@@ -12,6 +13,12 @@ Model::~Model()
 
 void Model::init()
 {
+	if (m_verts.size() == 0)
+	{
+		std::cout << "cannot init with 0 vertices" << std::endl;
+		return;
+	}
+
 	glGenBuffers(1, m_vbo);
 	glGenVertexArrays(1, m_vao);
 
@@ -25,9 +32,16 @@ void Model::init()
 	glVertexAttribPointer(positionAttributeIndex, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
 	glEnableVertexAttribArray(positionAttributeIndex);
+
+	ready = true;
 }
 
 void Model::draw()
 {
+	if (!ready)
+	{
+		return;
+	}
 
+	glDrawArrays(GL_TRIANGLES, 0, m_verts.size() / 3);
 }
