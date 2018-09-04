@@ -18,4 +18,5 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     ${SDL2_IMAGE_LIB} 
     GLEW::GLEW 
     glm
+	opengl32
 )
