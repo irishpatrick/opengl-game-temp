@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdint>
 
 #include "Context.hpp"
 #include "Model.hpp"
@@ -27,6 +28,13 @@ void render()
 			{
 				quit = true;
 			}
+		}
+
+		const uint8_t* keys = SDL_GetKeyboardState(nullptr);
+
+		if (keys[SDL_SCANCODE_ESCAPE])
+		{
+			quit = true;
 		}
 
 		ctx.clear();
