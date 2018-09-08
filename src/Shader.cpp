@@ -19,7 +19,20 @@ void Shader::loadShader(const std::string& fn, GLenum type)
 	std::string content = readFile(fn);
 	char* data = const_cast<char*>(content.c_str());
 	m_vsid = glCreateShader(type);
-	glShaderSource(m_vsid, 1, &data, &(int32_t)content.length());
+
+	GLuint *current_id;
+	switch (type)
+	{
+		case GL_VERTEX_SHADER:
+			current_id = &m_vsid;
+			break;
+		case GL_FRAGMENT_SHADER:
+			current_id = &m_fsid;
+			break;
+	}
+
+	glShaderSource(*current_id, 1, &data, &(int32_t)content.length());
+	glCompileShader(*current_id);
 }
 
 std::string Shader::readFile(const std::string& fn)

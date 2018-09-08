@@ -10,6 +10,7 @@ public:
 	~Shader();
 
 	void loadShader(const std::string&, GLenum);
+	void linkProgram();
 
 	GLuint getProgramId()
 	{
