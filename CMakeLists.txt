@@ -9,6 +9,7 @@ find_library(SDL2_IMAGE_LIB SDL2_image REQUIRED)
 
 file(GLOB sources src/*cpp)
 file(GLOB headers src/*.hpp)
+file(GLOB assets assets/*)
 
 add_executable(${PROJECT_NAME} ${headers} ${sources})
 
@@ -20,3 +21,5 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     glm
 	opengl32
 )
+
+file(COPY ${assets} DESTINATION ./assets)

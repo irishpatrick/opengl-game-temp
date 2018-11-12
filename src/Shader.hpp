@@ -2,6 +2,7 @@
 
 #include <GL/glew.h>
 #include <string>
+#include <glm/glm.hpp>
 
 class Shader
 {
@@ -11,6 +12,10 @@ public:
 
 	void loadShader(const std::string&, GLenum);
 	void linkProgram();
+	void use();
+	void detach();
+
+	void setMatrix4(const std::string&, const glm::mat4&);
 
 	GLuint getProgramId()
 	{
@@ -24,4 +29,3 @@ private:
 	GLuint m_pid;
 	std::string readFile(const std::string&);
 };
-

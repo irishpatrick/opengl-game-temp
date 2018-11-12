@@ -3,6 +3,9 @@
 #include <GL/glew.h>
 #include <cstdint>
 #include <vector>
+#include <glm/glm.hpp>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/ext.hpp>
 
 class Model
 {
@@ -12,6 +15,7 @@ public:
 
 	virtual void init();
 	virtual void draw();
+	virtual glm::mat4& getMatrix();
 
 protected:
 	const uint32_t positionAttributeIndex = 0;
@@ -20,6 +24,15 @@ protected:
 	GLuint m_vao[1];
 	std::vector<GLfloat> m_verts;
 
+	glm::mat4 matrix;
+
+	glm::vec3 position;
+	glm::vec3 rotation;
+	glm::vec3 scale;
+
 private:
 	bool ready;
+	glm::mat4 translationMatrix;
+	glm::mat4 rotationMatrix;
+	glm::mat4 scaleMatrix;
 };
