@@ -14,8 +14,13 @@ public:
 	virtual ~Model();
 
 	virtual void init();
+	virtual void update();
 	virtual void draw();
 	virtual glm::mat4& getMatrix();
+
+	glm::vec3 position;
+	glm::vec3 rotation;
+	glm::vec3 scale;
 
 protected:
 	const uint32_t positionAttributeIndex = 0;
@@ -25,10 +30,6 @@ protected:
 	std::vector<GLfloat> m_verts;
 
 	glm::mat4 matrix;
-
-	glm::vec3 position;
-	glm::vec3 rotation;
-	glm::vec3 scale;
 
 private:
 	bool ready;
