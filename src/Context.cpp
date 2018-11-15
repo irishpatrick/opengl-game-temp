@@ -19,8 +19,8 @@ Context::Context()
         "title",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        1280,
-        720,
+        1920,
+        1080,
         SDL_WINDOW_OPENGL
     );
 
@@ -50,7 +50,7 @@ Context::Context()
     }
 
     projection = glm::perspective(
-        glm::radians(80.0f),
+        glm::radians(60.0f),
         16.0f/9.0f,
         0.1f,
         100.0f
@@ -70,6 +70,8 @@ Context::Context()
         std::cout << "version not supported" << std::endl;
     }
 	#endif
+
+	//glViewport(0, 0, 1024, 768);
 }
 
 Context::~Context()
@@ -79,7 +81,7 @@ Context::~Context()
 	SDL_Quit();
 }
 
-glm::mat4& Context::getProjectionMatrix()
+glm::mat4 Context::getProjectionMatrix()
 {
     return projection;
 }

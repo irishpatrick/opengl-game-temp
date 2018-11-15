@@ -13,7 +13,7 @@ public:
 	void clear();
 	void flip();
 
-    glm::mat4& getProjectionMatrix();
+    glm::mat4 getProjectionMatrix();
 
 private:
     SDL_Window* m_window;

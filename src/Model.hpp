@@ -16,7 +16,7 @@ public:
 	virtual void init();
 	virtual void update();
 	virtual void draw();
-	virtual glm::mat4& getMatrix();
+	virtual glm::mat4 getMatrix();
 
 	glm::vec3 position;
 	glm::vec3 rotation;

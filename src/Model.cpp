@@ -11,6 +11,7 @@ Model::Model()
 	translationMatrix = glm::mat4(1.0f);
 	rotationMatrix = glm::mat4(1.0f);
 	scaleMatrix = glm::mat4(1.0f);
+	scale = glm::vec3(1.0f);
 	//std::cout << glm::to_string(matrix) << std::endl;
 }
 
@@ -22,7 +23,8 @@ Model::~Model()
 void Model::update()
 {
 	translationMatrix = glm::translate(glm::mat4(1.0f), position);
-	matrix = translationMatrix;
+	scaleMatrix = glm::scale(glm::mat4(1.0f), scale);
+	matrix = translationMatrix * scaleMatrix;
 }
 
 void Model::init()
@@ -50,7 +52,7 @@ void Model::init()
 	ready = true;
 }
 
-glm::mat4& Model::getMatrix()
+glm::mat4 Model::getMatrix()
 {
 	return matrix;
 }

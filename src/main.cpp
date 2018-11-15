@@ -25,14 +25,14 @@ void init()
 {
 	//view = glm::mat4(1.0f);
 	view = glm::lookAt(
-		glm::vec3(4,3,3),
+		glm::vec3(4,3,4),
 		glm::vec3(0,0,0),
 		glm::vec3(0,1,0)
 	);
 	m.init();
 	t.init();
-	t.position.x = 10.0f;
-	//t.position.y = 10.0f;
+	t.position.x = 0.5f;
+	t.position.z = -2.0f;
 	std::cout << "init shader" << std::endl;
 	shader.loadShader(fs::path(fs::current_path() / "assets" / "vertex.glsl").generic_string(), GL_VERTEX_SHADER);
 	shader.loadShader(fs::path(fs::current_path() / "assets" / "fragment.glsl").generic_string(), GL_FRAGMENT_SHADER);
@@ -62,9 +62,9 @@ void render()
 
 		ctx.clear();
 		shader.use();
-		glm::mat4 mp = t.getMatrix();
-		shader.setMatrix4("mvp", t.getMatrix());
-		std::cout << glm::to_string(t.getMatrix()) << std::endl;
+		glm::mat4 mvp = ctx.getProjectionMatrix() * view * t.getMatrix();
+		shader.setMatrix4("mvp", mvp);
+		//std::cout << glm::to_string(mvp) << std::endl;
 		//m.draw();
 		t.draw();
 		ctx.flip();
